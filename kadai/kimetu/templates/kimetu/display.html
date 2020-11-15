@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'kimetu/style.css' %}">
+  <title>キャラクターリスト</title>
+</head>
+<body>
+  <h2>登録キャラクターリスト</h2>
+  <ul>
+    {% for item in all_data %}
+    <li>名前:{{ item.name}}</li>
+    <li style="list-style: none;">性別:{{ item.gender}}</li>
+    <li style="list-style: none;">特徴:{{ item.feature}}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

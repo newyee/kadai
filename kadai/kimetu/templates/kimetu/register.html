@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>register</title>
+</head>
+<body>
+  <h1>キャラクター登録ページ</h1>
+  <form action="{% url 'kimetu:register' %}" method="post">
+    {% csrf_token %}
+    <p>
+      名前:<input type="text" name="name">
+    </p>
+    <p>
+      性別:
+      <select name="gender">
+        <option value="男">男</option>
+        <option value="女">女</option>
+      </select>
+    </p>
+    <p>
+      特徴:<input type="text" name="feature">
+    </p>
+    <input type="submit" value="登録">
+  </form>
+</body>
+</html>

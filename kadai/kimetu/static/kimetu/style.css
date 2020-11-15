@@ -1,0 +1,3 @@
+li:nth-of-type(3n){
+  margin-bottom:1rem;
+}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'kimetu/base_style.css' %}">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+</head>
+<body>
+  <div id="wrap_content">
+    <div id="right_sidebar">
+      {% block right_sidebar %}
+      {% endblock %}
+    </div>
+    <div id="main_content">
+      {% block main_content %}
+      {% endblock %}
+    </div>
+    <div id="left_sidebar">
+      {% block left_sidebar %}
+      {% endblock %}
+    </div>
+  </div>
+</body>
+</html>

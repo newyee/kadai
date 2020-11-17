@@ -1,0 +1,6 @@
+#wrap_content{
+  width: 980px;
+  display: flex;
+  margin:auto;
+  justify-content: space-between;
+}

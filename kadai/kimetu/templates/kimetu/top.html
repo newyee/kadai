@@ -1,0 +1,17 @@
+{% extends 'kimetu/base.html' %}
+{% block title %}
+トップページ
+{% endblock %}
+{% block right_sidebar %}
+<ul>
+  <li><a href="{% url 'kimetu:register' %}">登録フォーム</a></li>
+</ul>
+{% endblock %}
+{% block main_content %}
+<h2>トップページ</h2>
+{% endblock main_content %}
+{% block left_sidebar %}
+<ul>
+  <li><a href="{% url 'kimetu:display' %}">キャラクターリスト一覧</a></li>
+</ul>
+{% endblock %}

@@ -5,9 +5,8 @@ from .forms import CharacterForm
 # Create your views here.
 
 
-# def index(request):
-#     form = CharacterForm()
-#     return render(request, "kimetu/register.html", {"form": form})
+def index(request):
+    return render(request, "kimetu/top.html")
 
 
 def display(request):

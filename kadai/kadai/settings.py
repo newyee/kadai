@@ -15,9 +15,12 @@ import os
 import dj_database_url
 import django_heroku
 
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
-db_from_env = dj_database_url.config()
-DATABASES["default"].update(db_from_env)
+
 django_heroku.settings(locals())
 
 
@@ -33,7 +36,7 @@ print(BASE_DIR)
 SECRET_KEY = "7qoc+r%tz5xb0vd^n5(8_dqvo+7yj7-+nt5e!1j52c+mv!+-+j"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -59,6 +62,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # 追加
 ]
 
 ROOT_URLCONF = "kadai.urls"
@@ -87,10 +91,17 @@ WSGI_APPLICATION = "kadai.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "name",
+        "USER": "user",
+        "PASSWORD": "",
+        "HOST": "host",
+        "PORT": "",
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES["default"].update(db_from_env)
 
 
 # Password validation
@@ -130,3 +141,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# 追加
+if not DEBUG:
+    SECRET_KEY = os.environ["SECRET_KEY"]
+    import django_heroku  # 追加
+
+    django_heroku.settings(locals())  # 追加

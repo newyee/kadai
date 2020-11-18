@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
+db_from_env = dj_database_url.config()
+DATABASES["default"].update(db_from_env)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +32,7 @@ SECRET_KEY = "7qoc+r%tz5xb0vd^n5(8_dqvo+7yj7-+nt5e!1j52c+mv!+-+j"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
